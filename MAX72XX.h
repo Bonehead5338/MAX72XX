@@ -31,34 +31,10 @@
 #define MAX72XX_SDMODE_SHUTDOWN	0x00
 #define MAX72XX_SDMODE_NORMAL		0x01
 
-//Code B Font (Ref Datasheet Table 5)
-#define MAX72XX_7SEG_0		0x00
-#define MAX72XX_7SEG_1		0x01
-#define MAX72XX_7SEG_2		0x02
-#define MAX72XX_7SEG_3		0x03
-#define MAX72XX_7SEG_4		0x04
-#define MAX72XX_7SEG_5		0x05
-#define MAX72XX_7SEG_6		0x06
-#define MAX72XX_7SEG_7		0x07
-#define MAX72XX_7SEG_8		0x08
-#define MAX72XX_7SEG_9		0x09
-#define MAX72XX_7SEG_DASH	0x0A
-#define MAX72XX_7SEG_E		0x0B
-#define MAX72XX_7SEG_H		0x0C
-#define MAX72XX_7SEG_L		0x0D
-#define MAX72XX_7SEG_P		0x0E
-#define MAX72XX_7SEG_BLANK	0x0F
-#define MAX72XX_7SEG_DP		0xE0	//OR with 7-SEG characters above for DP
-
-//Scan-limit Register
-#define MAX72XX_SCANLIMIT_0	0x00
-#define MAX72XX_SCANLIMIT_1	0x01
-#define MAX72XX_SCANLIMIT_2	0x02
-#define MAX72XX_SCANLIMIT_3	0x03
-#define MAX72XX_SCANLIMIT_4 0x04
-#define MAX72XX_SCANLIMIT_5 0x05
-#define MAX72XX_SCANLIMIT_6 0x06
-#define MAX72XX_SCANLIMIT_7 0x07
+//number of valid characters in font
+#define MAX72XX_FONT_CHARS 16
+//OR with 7-SEG characters to add DP
+#define MAX72XX_7SEG_DP		0xE0	
 
 //Display Test values
 #define MAX72XX_TESTMODE_NORMAL	0x00
@@ -66,9 +42,6 @@
 
 //display dimension
 #define MATRIX_DIM 8
-
-//number of valid characters in font
-#define MAX72XX_FONT_CHARS 16
 
 class MAX72XXClass
 {

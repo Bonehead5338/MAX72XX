@@ -67,6 +67,9 @@
 //display dimension
 #define MATRIX_DIM 8
 
+//number of valid characters in font
+#define MAX72XX_FONT_CHARS 16
+
 class MAX72XXClass
 {
  protected:
@@ -90,8 +93,11 @@ class MAX72XXClass
 	 //generic SPI transmit method
 	 void Transmit(uint8_t address, uint8_t data);
 	 
-	 //digit register from row index helper (for code clarity)
-	 uint8_t DigitRegFromRowIndex(uint8_t row) { return row + 1; }
+	 //digit register from 0-based index helper (for code clarity)
+	 uint8_t DigitRegFromZeroIndex(uint8_t row) { return row + 1; }
+
+	 //valid font characters (Ref Table 5 of datasheet)
+	 char FontChars[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', 'E', 'H', 'L', 'P', ' ' };
 
  public:
 	MAX72XXClass
@@ -142,6 +148,8 @@ class MAX72XXClass
 	uint8_t getColumnValue(uint8_t col);
 	bool getLEDValue(uint8_t row, uint8_t col);
 
+	//7-segment display (decode mode must be set for each digit to display correctly)
+	void setCharacter(uint8_t digit, char character, bool decimal_point);
 };
 
 

@@ -104,16 +104,16 @@ void MAX72XXClass::setLEDValue(uint8_t row, uint8_t col, bool value)
 	//modify local row data
 	if (value)
 	{
-		//set bit
+		//set "column-th" bit in row
 		MAXData[row] |= 0x01 << col;
 	}
 	else
 	{
-		//clear bit
+		//clear "column-th" bit in row
 		MAXData[row] &= ~(0x01 << col);
 	}
 
-	//send updated row
+	//send updated row to Matrix
 	Transmit(DigitRegFromRowIndex(row), MAXData[row]);
 }
 
@@ -125,6 +125,7 @@ uint8_t* MAX72XXClass::getMatrix()
 		MAXData_ReadOnly[i] = MAXData[i];
 	}
 
+	//return pointer to read-only data
 	return MAXData_ReadOnly;
 }
 
@@ -134,7 +135,10 @@ uint8_t MAX72XXClass::getRowValue(uint8_t row)
 	if (row >= MATRIX_DIM)
 		return 0;
 	else
-		return RXData[row];
+	{
+		//return requested row data
+		return MAXData[row];
+	}
 }
 
 uint8_t MAX72XXClass::getColumnValue(uint8_t col)
@@ -170,7 +174,7 @@ bool MAX72XXClass::getLEDValue(uint8_t row, uint8_t col)
 		return false;
 	else
 	{
-		//test "column-th" bit of row
+		//return "column-th" bit of row
 		return (MAXData[row] && (0x01 << col));
 	}
 }

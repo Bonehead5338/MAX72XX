@@ -10,10 +10,10 @@ void MAX72XXClass::init()
 	pinMode(LoadPin, OUTPUT);
 	
 	//clear data registers
-	for (uint8_t i = 0; i < MATRIX_DIM; i++) MAXData[i] = 0;
+	for (uint8_t i = 0; i < MATRIX_DIM; i++) MAXData[i] = 0xFF;
 	
 	//send data
-	sendData(MAXData);		
+	setMatrix(MAXData);		
 
 	//set decode mode
 	Transmit(MAX72XX_REG_DECODEMODE, DecodeMode);
@@ -47,7 +47,7 @@ void MAX72XXClass::Transmit(uint8_t address, uint8_t data)
 	SPI.endTransaction();
 }
 
-void MAX72XXClass::sendData(uint8_t* data)
+void MAX72XXClass::setMatrix(uint8_t* data)
 {
 	//send 8 bytes to digit registers
 	for (uint8_t reg = MAX72XX_REG_DIGIT0, i = 0; reg <= MAX72XX_REG_DIGIT7; reg++, i++)
@@ -56,27 +56,50 @@ void MAX72XXClass::sendData(uint8_t* data)
 	}
 }
 
-bool MAX72XXClass::sendRow(uint8_t row, uint8_t data)
+void MAX72XXClass::setRowValue(uint8_t row, uint8_t value)
 {
 	//test if valid row
-	if (row < 0 || row >= MATRIX_DIM) return false;
+	if (row >= MATRIX_DIM)
+		return;
 
 	//store locally
-	MAXData[row] = data;
+	MAXData[row] = value;
 
 	//send to MAX (digits are 1-based, add 1)
-	Transmit(DigitFromRow(row), data);
-
-	return true;
+	Transmit(DigitRegFromRowIndex(row), MAXData[row]);
 }
 
-bool MAX72XXClass::setPixel(uint8_t row, uint8_t col, bool value)
+void MAX72XXClass::setColumnValue(uint8_t col, uint8_t value)
 {
 	//test if valid row
-	if (row < 0 || row >= MATRIX_DIM) return false;
+	if (col >= MATRIX_DIM)
+		return;
 
-	//test if valid col
-	if (row < 0 || row >= MATRIX_DIM) return false;
+	//for each row..
+	for (uint8_t row = 0; row < MATRIX_DIM; row++)
+	{
+		//test "row-th" bit of new column value
+		if ((0x01 << row) && value)
+		{
+			//set "column-th" bit of matrix data
+			MAXData[row] |= (0x01 << col);
+		}
+		else
+		{
+			//clear "column-th" bit of matrix data
+			MAXData[row] &= ~(0x01 << col);
+		}
+	}
+
+	//update entire matrix
+	setMatrix(MAXData);
+}
+
+void MAX72XXClass::setLEDValue(uint8_t row, uint8_t col, bool value)
+{
+	//test if valid row and column
+	if (row >= MATRIX_DIM || col >= MATRIX_DIM)
+		return;
 
 	//modify local row data
 	if (value)
@@ -91,7 +114,65 @@ bool MAX72XXClass::setPixel(uint8_t row, uint8_t col, bool value)
 	}
 
 	//send updated row
-	Transmit(DigitFromRow(row), MAXData[row]);
+	Transmit(DigitRegFromRowIndex(row), MAXData[row]);
+}
+
+uint8_t* MAX72XXClass::getMatrix()
+{	
+	//copy current display data to read only area
+	for (uint8_t i = 0; i < MATRIX_DIM; i++)
+	{
+		MAXData_ReadOnly[i] = MAXData[i];
+	}
+
+	return MAXData_ReadOnly;
+}
+
+uint8_t MAX72XXClass::getRowValue(uint8_t row)
+{
+	//return zero for invalid row
+	if (row >= MATRIX_DIM)
+		return 0;
+	else
+		return RXData[row];
+}
+
+uint8_t MAX72XXClass::getColumnValue(uint8_t col)
+{
+	//return zero for invalid column
+	if (col >= MATRIX_DIM)
+		return 0;
+	else
+	{
+		//byte for result
+		uint8_t result = 0;
+		
+		//for each row..
+		for (uint8_t row = 0; row < MATRIX_DIM; row++)
+		{
+			//test the "column-th" bit
+			if (MAXData[row] && (0x01 << col))
+			{
+				//set "row-th" bit in result
+				result |= (0x01 << col);
+			}
+		}
+
+		return result;
+	}
+		
+}
+
+bool MAX72XXClass::getLEDValue(uint8_t row, uint8_t col)
+{
+	//return false for invalid row or column
+	if (row >= MATRIX_DIM || col >= MATRIX_DIM)
+		return false;
+	else
+	{
+		//test "column-th" bit of row
+		return (MAXData[row] && (0x01 << col));
+	}
 }
 
 

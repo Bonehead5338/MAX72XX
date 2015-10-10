@@ -76,19 +76,22 @@ class MAX72XXClass
 	 //configurable SPI clock setting
 	 uint32_t SPIClock;
 
-	 //MAX72XX settings
+	 //MAX72XX configuration settings
 	 uint8_t DecodeMode;
 	 uint8_t Intensity;
 	 uint8_t ScanLimit;
 	 bool ShutdownMode;
 	 bool TestMode;
 
-	 //current data
+	 //current display data
 	 uint8_t MAXData[8];
+	 uint8_t MAXData_ReadOnly[8];
 
-	 //transmit method
+	 //generic SPI transmit method
 	 void Transmit(uint8_t address, uint8_t data);
-	 uint8_t DigitFromRow(uint8_t row) { return row + 1; }
+	 
+	 //digit register from row index helper (for code clarity)
+	 uint8_t DigitRegFromRowIndex(uint8_t row) { return row + 1; }
 
  public:
 	MAX72XXClass
@@ -127,10 +130,18 @@ class MAX72XXClass
 	bool getShutDownMode(bool shutdown) { return ShutdownMode; }
 	bool getTestMode(bool test_mode) { return TestMode; }
 
-	//send data to display
-	void sendData(uint8_t* data);
-	bool sendRow(uint8_t row, uint8_t data);
-	bool setPixel(uint8_t row, uint8_t col, bool value);
+	//display data setters
+	void setMatrix(uint8_t* data);
+	void setRowValue(uint8_t row, uint8_t value);
+	void setColumnValue(uint8_t col, uint8_t value);
+	void setLEDValue(uint8_t row, uint8_t col, bool value);
+
+	//display data getters
+	uint8_t* getMatrix();
+	uint8_t getRowValue(uint8_t row);
+	uint8_t getColumnValue(uint8_t col);
+	bool getLEDValue(uint8_t row, uint8_t col);
+
 };
 
 

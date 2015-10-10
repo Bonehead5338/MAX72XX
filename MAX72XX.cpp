@@ -66,7 +66,7 @@ void MAX72XXClass::setRowValue(uint8_t row, uint8_t value)
 	MAXData[row] = value;
 
 	//send to MAX (digits are 1-based, add 1)
-	Transmit(DigitRegFromRowIndex(row), MAXData[row]);
+	Transmit(DigitRegFromZeroIndex(row), MAXData[row]);
 }
 
 void MAX72XXClass::setColumnValue(uint8_t col, uint8_t value)
@@ -114,7 +114,7 @@ void MAX72XXClass::setLEDValue(uint8_t row, uint8_t col, bool value)
 	}
 
 	//send updated row to Matrix
-	Transmit(DigitRegFromRowIndex(row), MAXData[row]);
+	Transmit(DigitRegFromZeroIndex(row), MAXData[row]);
 }
 
 uint8_t* MAX72XXClass::getMatrix()
@@ -163,8 +163,7 @@ uint8_t MAX72XXClass::getColumnValue(uint8_t col)
 		}
 
 		return result;
-	}
-		
+	}	
 }
 
 bool MAX72XXClass::getLEDValue(uint8_t row, uint8_t col)
@@ -176,6 +175,23 @@ bool MAX72XXClass::getLEDValue(uint8_t row, uint8_t col)
 	{
 		//return "column-th" bit of row
 		return (MAXData[row] && (0x01 << col));
+	}
+}
+
+void MAX72XXClass::setCharacter(uint8_t digit, char character, bool decimal_point)
+{
+	//check valid digit 
+	if (digit >= MATRIX_DIM) return;
+
+	//check against all valid characters in font
+	for (uint8_t i = 0; i < MAX72XX_FONT_CHARS; i++)
+	{
+		//if valid character, send for display
+		if (character == FontChars[i])
+		{
+			//send to MAX72XX (or with 0xE0 to add decimal
+			Transmit(DigitRegFromZeroIndex(digit), decimal_point ? i |= MAX72XX_7SEG_DP : i);
+		}
 	}
 }
 

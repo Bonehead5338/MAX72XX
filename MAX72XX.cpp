@@ -10,7 +10,7 @@ void MAX72XXClass::init()
 	pinMode(LoadPin, OUTPUT);
 	
 	//clear data registers
-	for (uint8_t i = 0; i < MATRIX_DIM; i++) MAXData[i] = 0xFF;
+	for (uint8_t i = 0; i < MATRIX_DIM; i++) MAXData[i] = 0x00;
 	
 	//send data
 	setMatrix(MAXData);		

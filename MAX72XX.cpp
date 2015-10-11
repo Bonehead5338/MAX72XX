@@ -1,8 +1,8 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////
-/// \file C:\Users\DAVE\Documents\Arduino\libraries\MAX72XX\MAX72XX.cpp
-///
-/// \brief Implements the maximum 72 xx class.
-////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @file C:\Users\DAVE\Documents\Arduino\libraries\MAX72XX\MAX72XX.cpp
+ *
+ * Implements the MAX72XX library
+ */
 #include "MAX72XX.h"
 
 void MAX72XXClass::init()

@@ -1,0 +1,382 @@
+\hypertarget{class_m_a_x72_x_x_class}{}\section{M\+A\+X72\+X\+X\+Class Class Reference}
+\label{class_m_a_x72_x_x_class}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_m_a_x72_x_x_class_ab45a341ff4776e620a1b72e5270a7de5}{M\+A\+X72\+X\+X\+Class} (int load\+\_\+pin, uint32\+\_\+t spi\+\_\+clock=10000000, uint8\+\_\+t decode\+\_\+mode=0x00, uint8\+\_\+t intensity=0x\+F\+F, uint8\+\_\+t scan\+\_\+limit=0x07, bool shutdown=false, bool test\+\_\+mode=false)
+\item 
+void \hyperlink{class_m_a_x72_x_x_class_a6211528689f9ab8d1846532776cc6264}{init} ()
+\item 
+void \hyperlink{class_m_a_x72_x_x_class_a8b17f33f608e635b9fdc4367a113adb7}{set\+Decode\+Mode} (uint8\+\_\+t decode\+\_\+mode)
+\item 
+void \hyperlink{class_m_a_x72_x_x_class_a407f26cf92360d93e9c5f0b91e5542cc}{set\+Intensity} (uint8\+\_\+t intensity)
+\item 
+void \hyperlink{class_m_a_x72_x_x_class_ac342306761ca24c478c446cf0682fb24}{set\+Scan\+Limit} (uint8\+\_\+t scan\+\_\+limit)
+\item 
+void \hyperlink{class_m_a_x72_x_x_class_ac3a9c6ddd4b2dce7431eb9e2d7d9d7ac}{set\+Shut\+Down\+Mode} (bool shutdown)
+\item 
+void \hyperlink{class_m_a_x72_x_x_class_acf32b644ce60843b684ae32446622dd6}{set\+Test\+Mode} (bool test\+\_\+mode)
+\item 
+uint8\+\_\+t \hyperlink{class_m_a_x72_x_x_class_a3d693ffd24fbc395a288fbe1283f2094}{get\+Decode\+Mode} ()
+\item 
+uint8\+\_\+t \hyperlink{class_m_a_x72_x_x_class_aea0075ed153b3b44c9539ca4cdeef8a7}{get\+Intensity} ()
+\item 
+uint8\+\_\+t \hyperlink{class_m_a_x72_x_x_class_a992d18c02ae07b71345fac7b235fed15}{get\+Scan\+Limit} ()
+\item 
+bool \hyperlink{class_m_a_x72_x_x_class_a3bd7b10cc348f46895378eeb553ababc}{get\+Shutdown\+Mode} ()
+\item 
+bool \hyperlink{class_m_a_x72_x_x_class_aa2368221152a810345dc7a309a430149}{get\+Display\+Test\+Mode} ()
+\item 
+void \hyperlink{class_m_a_x72_x_x_class_a988f905f9eba35cf9cb0c228b2eb8ec1}{set\+Matrix} (uint8\+\_\+t $\ast$data)
+\item 
+void \hyperlink{class_m_a_x72_x_x_class_a2b2132e9a1cff1b8e8b778d3471998dc}{set\+Row\+Value} (uint8\+\_\+t row, uint8\+\_\+t value)
+\item 
+void \hyperlink{class_m_a_x72_x_x_class_ae88e0718a2e14dbe3b13a97fb9cf69c2}{set\+Column\+Value} (uint8\+\_\+t col, uint8\+\_\+t value)
+\item 
+void \hyperlink{class_m_a_x72_x_x_class_ab9b5890541f583c71a6c3f5de5bec780}{set\+L\+E\+D\+Value} (uint8\+\_\+t row, uint8\+\_\+t col, bool value)
+\item 
+uint8\+\_\+t $\ast$ \hyperlink{class_m_a_x72_x_x_class_abd68209017a0996f6c58a1f03a533134}{get\+Matrix} ()
+\item 
+uint8\+\_\+t \hyperlink{class_m_a_x72_x_x_class_a5ae308113be0ebc42939de90777f4f52}{get\+Row\+Value} (uint8\+\_\+t row)
+\item 
+uint8\+\_\+t \hyperlink{class_m_a_x72_x_x_class_a32292c971f4cd78377cb9d0a0ee40f08}{get\+Column\+Value} (uint8\+\_\+t col)
+\item 
+bool \hyperlink{class_m_a_x72_x_x_class_a4996f2b3403c46c5cf0a85e3fcc40109}{get\+L\+E\+D\+Value} (uint8\+\_\+t row, uint8\+\_\+t col)
+\item 
+void \hyperlink{class_m_a_x72_x_x_class_a7a1895b4809df7e8d565e74e199e8f05}{set\+Character} (uint8\+\_\+t digit, char character, bool decimal\+\_\+point)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_m_a_x72_x_x_class_ab45a341ff4776e620a1b72e5270a7de5}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{M\+A\+X72\+X\+X\+Class(int load\+\_\+pin, uint32\+\_\+t spi\+\_\+clock=10000000, uint8\+\_\+t decode\+\_\+mode=0x00, uint8\+\_\+t intensity=0x\+F\+F, uint8\+\_\+t scan\+\_\+limit=0x07, bool shutdown=false, bool test\+\_\+mode=false)}]{\setlength{\rightskip}{0pt plus 5cm}M\+A\+X72\+X\+X\+Class\+::\+M\+A\+X72\+X\+X\+Class (
+\begin{DoxyParamCaption}
+\item[{int}]{load\+\_\+pin, }
+\item[{uint32\+\_\+t}]{spi\+\_\+clock = {\ttfamily 10000000}, }
+\item[{uint8\+\_\+t}]{decode\+\_\+mode = {\ttfamily 0x00}, }
+\item[{uint8\+\_\+t}]{intensity = {\ttfamily 0xFF}, }
+\item[{uint8\+\_\+t}]{scan\+\_\+limit = {\ttfamily 0x07}, }
+\item[{bool}]{shutdown = {\ttfamily false}, }
+\item[{bool}]{test\+\_\+mode = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_m_a_x72_x_x_class_ab45a341ff4776e620a1b72e5270a7de5}
+Constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em load\+\_\+pin} & The L\+O\+A\+D/\+C\+S pin. \\
+\hline
+{\em spi\+\_\+clock} & S\+P\+I clock (Arduino S\+P\+I\+Settings class) \\
+\hline
+{\em decode\+\_\+mode} & Decode mode (Datasheet Table 4). \\
+\hline
+{\em intensity} & Display intensity (Datasheet Table 7). \\
+\hline
+{\em scan\+\_\+limit} & The scan limit (Datasheet Table 8). \\
+\hline
+{\em shutdown} & true to set shutdown mode (Datasheet Table 3). \\
+\hline
+{\em test\+\_\+mode} & true to enable test mode (Datasheet Table 10). \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_m_a_x72_x_x_class_a32292c971f4cd78377cb9d0a0ee40f08}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!get\+Column\+Value@{get\+Column\+Value}}
+\index{get\+Column\+Value@{get\+Column\+Value}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{get\+Column\+Value(uint8\+\_\+t col)}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t M\+A\+X72\+X\+X\+Class\+::get\+Column\+Value (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{col}
+\end{DoxyParamCaption}
+)}\label{class_m_a_x72_x_x_class_a32292c971f4cd78377cb9d0a0ee40f08}
+Gets current display status of an L\+E\+D column.
+
+
+\begin{DoxyParams}{Parameters}
+{\em col} & Requested column (0-\/7)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The column value. 
+\end{DoxyReturn}
+\hypertarget{class_m_a_x72_x_x_class_a3d693ffd24fbc395a288fbe1283f2094}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!get\+Decode\+Mode@{get\+Decode\+Mode}}
+\index{get\+Decode\+Mode@{get\+Decode\+Mode}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{get\+Decode\+Mode()}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t M\+A\+X72\+X\+X\+Class\+::get\+Decode\+Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_m_a_x72_x_x_class_a3d693ffd24fbc395a288fbe1283f2094}
+Gets the currently-\/configured Decode Mode.
+
+\begin{DoxyReturn}{Returns}
+The currently-\/configured Decode Mode. 
+\end{DoxyReturn}
+\hypertarget{class_m_a_x72_x_x_class_aa2368221152a810345dc7a309a430149}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!get\+Display\+Test\+Mode@{get\+Display\+Test\+Mode}}
+\index{get\+Display\+Test\+Mode@{get\+Display\+Test\+Mode}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{get\+Display\+Test\+Mode()}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+A\+X72\+X\+X\+Class\+::get\+Display\+Test\+Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_m_a_x72_x_x_class_aa2368221152a810345dc7a309a430149}
+Gets currently-\/configured Display Test Mode.
+
+\begin{DoxyReturn}{Returns}
+true if in Display Test Mode 
+\end{DoxyReturn}
+\hypertarget{class_m_a_x72_x_x_class_aea0075ed153b3b44c9539ca4cdeef8a7}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!get\+Intensity@{get\+Intensity}}
+\index{get\+Intensity@{get\+Intensity}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{get\+Intensity()}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t M\+A\+X72\+X\+X\+Class\+::get\+Intensity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_m_a_x72_x_x_class_aea0075ed153b3b44c9539ca4cdeef8a7}
+Gets the currently-\/configured Display Intensity.
+
+\begin{DoxyReturn}{Returns}
+The currently-\/configured Display Intensity. 
+\end{DoxyReturn}
+\hypertarget{class_m_a_x72_x_x_class_a4996f2b3403c46c5cf0a85e3fcc40109}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!get\+L\+E\+D\+Value@{get\+L\+E\+D\+Value}}
+\index{get\+L\+E\+D\+Value@{get\+L\+E\+D\+Value}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{get\+L\+E\+D\+Value(uint8\+\_\+t row, uint8\+\_\+t col)}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+A\+X72\+X\+X\+Class\+::get\+L\+E\+D\+Value (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{row, }
+\item[{uint8\+\_\+t}]{col}
+\end{DoxyParamCaption}
+)}\label{class_m_a_x72_x_x_class_a4996f2b3403c46c5cf0a85e3fcc40109}
+Gets value of specific L\+E\+D form Row/\+Column co-\/ordinates.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Row co-\/ordinate \\
+\hline
+{\em col} & Column co-\/ordinate\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status of requested L\+E\+D. 
+\end{DoxyReturn}
+\hypertarget{class_m_a_x72_x_x_class_abd68209017a0996f6c58a1f03a533134}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!get\+Matrix@{get\+Matrix}}
+\index{get\+Matrix@{get\+Matrix}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{get\+Matrix()}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t $\ast$ M\+A\+X72\+X\+X\+Class\+::get\+Matrix (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_m_a_x72_x_x_class_abd68209017a0996f6c58a1f03a533134}
+Gets the currently-\/displayed data as pointer to 8x8 byte array.
+
+\begin{DoxyReturn}{Returns}
+pointer to uint8\+\_\+t\mbox{[}8\mbox{]}\href{Row/Column}{\tt 8} 
+\end{DoxyReturn}
+\hypertarget{class_m_a_x72_x_x_class_a5ae308113be0ebc42939de90777f4f52}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!get\+Row\+Value@{get\+Row\+Value}}
+\index{get\+Row\+Value@{get\+Row\+Value}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{get\+Row\+Value(uint8\+\_\+t row)}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t M\+A\+X72\+X\+X\+Class\+::get\+Row\+Value (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{row}
+\end{DoxyParamCaption}
+)}\label{class_m_a_x72_x_x_class_a5ae308113be0ebc42939de90777f4f52}
+Gets current display status of an L\+E\+D row.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Requested row (0-\/7).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The row value. 
+\end{DoxyReturn}
+\hypertarget{class_m_a_x72_x_x_class_a992d18c02ae07b71345fac7b235fed15}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!get\+Scan\+Limit@{get\+Scan\+Limit}}
+\index{get\+Scan\+Limit@{get\+Scan\+Limit}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{get\+Scan\+Limit()}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t M\+A\+X72\+X\+X\+Class\+::get\+Scan\+Limit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_m_a_x72_x_x_class_a992d18c02ae07b71345fac7b235fed15}
+Gets currently-\/configured Scan Limit.
+
+\begin{DoxyReturn}{Returns}
+The currently-\/configured Scan Limit. 
+\end{DoxyReturn}
+\hypertarget{class_m_a_x72_x_x_class_a3bd7b10cc348f46895378eeb553ababc}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!get\+Shutdown\+Mode@{get\+Shutdown\+Mode}}
+\index{get\+Shutdown\+Mode@{get\+Shutdown\+Mode}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{get\+Shutdown\+Mode()}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+A\+X72\+X\+X\+Class\+::get\+Shutdown\+Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_m_a_x72_x_x_class_a3bd7b10cc348f46895378eeb553ababc}
+Gets currently-\/configured Shutdown Mode.
+
+\begin{DoxyReturn}{Returns}
+true if in Shutdown Mode 
+\end{DoxyReturn}
+\hypertarget{class_m_a_x72_x_x_class_a6211528689f9ab8d1846532776cc6264}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!init@{init}}
+\index{init@{init}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{init()}]{\setlength{\rightskip}{0pt plus 5cm}void M\+A\+X72\+X\+X\+Class\+::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_m_a_x72_x_x_class_a6211528689f9ab8d1846532776cc6264}
+Initialises this object. Call in Setup() \hypertarget{class_m_a_x72_x_x_class_a7a1895b4809df7e8d565e74e199e8f05}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!set\+Character@{set\+Character}}
+\index{set\+Character@{set\+Character}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{set\+Character(uint8\+\_\+t digit, char character, bool decimal\+\_\+point)}]{\setlength{\rightskip}{0pt plus 5cm}void M\+A\+X72\+X\+X\+Class\+::set\+Character (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{digit, }
+\item[{char}]{character, }
+\item[{bool}]{decimal\+\_\+point}
+\end{DoxyParamCaption}
+)}\label{class_m_a_x72_x_x_class_a7a1895b4809df7e8d565e74e199e8f05}
+Displays a character at selected digit position.
+
+
+\begin{DoxyParams}{Parameters}
+{\em digit} & Digit position (0-\/7). \\
+\hline
+{\em character} & The characte\+Character to display (Refer to datasheet for valid characters). \\
+\hline
+{\em decimal\+\_\+point} & true to add decimal point to digit. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_m_a_x72_x_x_class_ae88e0718a2e14dbe3b13a97fb9cf69c2}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!set\+Column\+Value@{set\+Column\+Value}}
+\index{set\+Column\+Value@{set\+Column\+Value}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{set\+Column\+Value(uint8\+\_\+t col, uint8\+\_\+t value)}]{\setlength{\rightskip}{0pt plus 5cm}void M\+A\+X72\+X\+X\+Class\+::set\+Column\+Value (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{col, }
+\item[{uint8\+\_\+t}]{value}
+\end{DoxyParamCaption}
+)}\label{class_m_a_x72_x_x_class_ae88e0718a2e14dbe3b13a97fb9cf69c2}
+Sets column value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em col} & The col. \\
+\hline
+{\em value} & The value. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_m_a_x72_x_x_class_a8b17f33f608e635b9fdc4367a113adb7}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!set\+Decode\+Mode@{set\+Decode\+Mode}}
+\index{set\+Decode\+Mode@{set\+Decode\+Mode}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{set\+Decode\+Mode(uint8\+\_\+t decode\+\_\+mode)}]{\setlength{\rightskip}{0pt plus 5cm}void M\+A\+X72\+X\+X\+Class\+::set\+Decode\+Mode (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{decode\+\_\+mode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_m_a_x72_x_x_class_a8b17f33f608e635b9fdc4367a113adb7}
+Sets decode mode. (Datasheet Table 4)
+
+
+\begin{DoxyParams}{Parameters}
+{\em decode\+\_\+mode} & The decode mode. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_m_a_x72_x_x_class_a407f26cf92360d93e9c5f0b91e5542cc}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!set\+Intensity@{set\+Intensity}}
+\index{set\+Intensity@{set\+Intensity}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{set\+Intensity(uint8\+\_\+t intensity)}]{\setlength{\rightskip}{0pt plus 5cm}void M\+A\+X72\+X\+X\+Class\+::set\+Intensity (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{intensity}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_m_a_x72_x_x_class_a407f26cf92360d93e9c5f0b91e5542cc}
+Sets an intensity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em intensity} & The intensity. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_m_a_x72_x_x_class_ab9b5890541f583c71a6c3f5de5bec780}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!set\+L\+E\+D\+Value@{set\+L\+E\+D\+Value}}
+\index{set\+L\+E\+D\+Value@{set\+L\+E\+D\+Value}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{set\+L\+E\+D\+Value(uint8\+\_\+t row, uint8\+\_\+t col, bool value)}]{\setlength{\rightskip}{0pt plus 5cm}void M\+A\+X72\+X\+X\+Class\+::set\+L\+E\+D\+Value (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{row, }
+\item[{uint8\+\_\+t}]{col, }
+\item[{bool}]{value}
+\end{DoxyParamCaption}
+)}\label{class_m_a_x72_x_x_class_ab9b5890541f583c71a6c3f5de5bec780}
+Sets L\+E\+D value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & L\+E\+D Row (0-\/7) \\
+\hline
+{\em col} & L\+E\+D Column (0-\/8) \\
+\hline
+{\em value} & Requested L\+E\+D display value \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_m_a_x72_x_x_class_a988f905f9eba35cf9cb0c228b2eb8ec1}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!set\+Matrix@{set\+Matrix}}
+\index{set\+Matrix@{set\+Matrix}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{set\+Matrix(uint8\+\_\+t $\ast$data)}]{\setlength{\rightskip}{0pt plus 5cm}void M\+A\+X72\+X\+X\+Class\+::set\+Matrix (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{data}
+\end{DoxyParamCaption}
+)}\label{class_m_a_x72_x_x_class_a988f905f9eba35cf9cb0c228b2eb8ec1}
+Sets entire matrix from 8x8 byte array.
+
+
+\begin{DoxyParams}{Parameters}
+{\em uint8\+\_\+t\mbox{[}8\mbox{]}\mbox{[}8\mbox{]}} & Row/\+Col data. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_m_a_x72_x_x_class_a2b2132e9a1cff1b8e8b778d3471998dc}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!set\+Row\+Value@{set\+Row\+Value}}
+\index{set\+Row\+Value@{set\+Row\+Value}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{set\+Row\+Value(uint8\+\_\+t row, uint8\+\_\+t value)}]{\setlength{\rightskip}{0pt plus 5cm}void M\+A\+X72\+X\+X\+Class\+::set\+Row\+Value (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{row, }
+\item[{uint8\+\_\+t}]{value}
+\end{DoxyParamCaption}
+)}\label{class_m_a_x72_x_x_class_a2b2132e9a1cff1b8e8b778d3471998dc}
+Sets row value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & The row. \\
+\hline
+{\em value} & The value. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_m_a_x72_x_x_class_ac342306761ca24c478c446cf0682fb24}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!set\+Scan\+Limit@{set\+Scan\+Limit}}
+\index{set\+Scan\+Limit@{set\+Scan\+Limit}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{set\+Scan\+Limit(uint8\+\_\+t scan\+\_\+limit)}]{\setlength{\rightskip}{0pt plus 5cm}void M\+A\+X72\+X\+X\+Class\+::set\+Scan\+Limit (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{scan\+\_\+limit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_m_a_x72_x_x_class_ac342306761ca24c478c446cf0682fb24}
+Sets scan limit.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scan\+\_\+limit} & The scan limit. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_m_a_x72_x_x_class_ac3a9c6ddd4b2dce7431eb9e2d7d9d7ac}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!set\+Shut\+Down\+Mode@{set\+Shut\+Down\+Mode}}
+\index{set\+Shut\+Down\+Mode@{set\+Shut\+Down\+Mode}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{set\+Shut\+Down\+Mode(bool shutdown)}]{\setlength{\rightskip}{0pt plus 5cm}void M\+A\+X72\+X\+X\+Class\+::set\+Shut\+Down\+Mode (
+\begin{DoxyParamCaption}
+\item[{bool}]{shutdown}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_m_a_x72_x_x_class_ac3a9c6ddd4b2dce7431eb9e2d7d9d7ac}
+Sets shut down mode.
+
+
+\begin{DoxyParams}{Parameters}
+{\em shutdown} & true to shutdown, false for normal operation. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_m_a_x72_x_x_class_acf32b644ce60843b684ae32446622dd6}{}\index{M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}!set\+Test\+Mode@{set\+Test\+Mode}}
+\index{set\+Test\+Mode@{set\+Test\+Mode}!M\+A\+X72\+X\+X\+Class@{M\+A\+X72\+X\+X\+Class}}
+\subsubsection[{set\+Test\+Mode(bool test\+\_\+mode)}]{\setlength{\rightskip}{0pt plus 5cm}void M\+A\+X72\+X\+X\+Class\+::set\+Test\+Mode (
+\begin{DoxyParamCaption}
+\item[{bool}]{test\+\_\+mode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_m_a_x72_x_x_class_acf32b644ce60843b684ae32446622dd6}
+Sets test mode.
+
+
+\begin{DoxyParams}{Parameters}
+{\em test\+\_\+mode} & true to enable test mode, false to disable it. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_m_a_x72_x_x_8h}{M\+A\+X72\+X\+X.\+h}\item 
+\hyperlink{_m_a_x72_x_x_8cpp}{M\+A\+X72\+X\+X.\+cpp}\end{DoxyCompactItemize}

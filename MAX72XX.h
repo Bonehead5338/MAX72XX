@@ -59,7 +59,7 @@ class MAX72XXClass
 	 uint8_t Intensity;
 	 uint8_t ScanLimit;
 	 bool ShutdownMode;
-	 bool TestMode;
+	 bool DisplayTestMode;
 
 	 //current display data
 	 uint8_t MAXData[8];
@@ -71,24 +71,24 @@ class MAX72XXClass
 	 //digit register from 0-based index helper (for code clarity)
 	 uint8_t DigitRegFromZeroIndex(uint8_t row) { return row + 1; }
 
-	 /** \brief valid font characters (Ref Table 5 of datasheet) */
+	 /** \brief valid font characters (Datasheet Table 5) */
 	 const char FontChars[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', 'E', 'H', 'L', 'P', ' ' };
 
  public:
 	/**
 	 * Constructor.
 	 *
-	 * @param LOAD_CS_PIN The load create struct pin.
-	 * @param spi_clock   The spi clock.
-	 * @param decode_mode The decode mode.
-	 * @param intensity   The intensity.
-	 * @param scan_limit  The scan limit.
-	 * @param shutdown    true to shutdown.
-	 * @param test_mode   true to enable test mode, false to disable it.
+	 * @param load_pin    The LOAD/CS pin.
+	 * @param spi_clock   SPI clock (Arduino SPISettings class)
+	 * @param decode_mode Decode mode (Datasheet Table 4).
+	 * @param intensity   Display intensity (Datasheet Table 7).
+	 * @param scan_limit  The scan limit (Datasheet Table 8).
+	 * @param shutdown    true to set shutdown mode (Datasheet Table 3).
+	 * @param test_mode   true to enable test mode (Datasheet Table 10).
 	 */
 	MAX72XXClass
 	(
-		int LOAD_CS_PIN, 
+		int load_pin, 
 		uint32_t spi_clock = 10000000,
 		uint8_t decode_mode = 0x00,
 		uint8_t intensity = 0xFF,
@@ -96,21 +96,21 @@ class MAX72XXClass
 		bool shutdown = false,
 		bool test_mode = false
 	) :
-	LoadPin(LOAD_CS_PIN),
+	LoadPin(load_pin),
 	SPIClock(spi_clock),
 	DecodeMode(decode_mode),
 	Intensity(intensity),
 	ScanLimit(scan_limit),
 	ShutdownMode(shutdown),
-	TestMode(test_mode)
+	DisplayTestMode(test_mode)
 	{}
-
 
 	/** Initialises this object. Call in Setup()*/
 	void init();
 
 	/**
 	 * Sets decode mode.
+	 * (Datasheet Table 4)
 	 *
 	 * @param decode_mode The decode mode.
 	 */
@@ -142,45 +142,45 @@ class MAX72XXClass
 	 *
 	 * @param test_mode true to enable test mode, false to disable it.
 	 */
-	void setTestMode(bool test_mode) { Transmit(MAX72XX_REG_DISPLAYTEST, test_mode ? MAX72XX_TESTMODE_TEST : MAX72XX_TESTMODE_NORMAL); TestMode = test_mode; }
+	void setTestMode(bool test_mode) { Transmit(MAX72XX_REG_DISPLAYTEST, test_mode ? MAX72XX_TESTMODE_TEST : MAX72XX_TESTMODE_NORMAL); DisplayTestMode = test_mode; }
 
 	/**
-	 * Gets decode mode.
+	 * Gets the currently-configured Decode Mode.
 	 *
-	 * @return The decode mode.
+	 * @return The currently-configured Decode Mode.
 	 */
 	uint8_t getDecodeMode() { return DecodeMode; }
 
 	/**
-	 * Gets the intensity.
+	 * Gets the currently-configured Display Intensity.
 	 *
-	 * @return The intensity.
+	 * @return The currently-configured Display Intensity.
 	 */
 	uint8_t getIntensity() { return Intensity; }
 
 	/**
-	 * Gets scan limit.
+	 * Gets currently-configured Scan Limit.
 	 *
-	 * @return The scan limit.
+	 * @return The currently-configured Scan Limit.
 	 */
 	uint8_t getScanLimit() { return ScanLimit; }
 
 	/**
-	 * Gets shut down mode.
+	 * Gets currently-configured Shutdown Mode.
 	 *
 	 * @return true if in Shutdown Mode
 	 */
-	bool getShutDownMode() { return ShutdownMode; }
+	bool getShutdownMode() { return ShutdownMode; }
 
 	/**
-	 * Gets test mode.
+	 * Gets currently-configured Display Test Mode.
 	 *
 	 * @return true if in Display Test Mode
 	 */
-	bool getTestMode() { return TestMode; }
+	bool getDisplayTestMode() { return DisplayTestMode; }
 
 	/**
-	 * Sets a matrix.
+	 * Sets entire matrix from 8x8 byte array.
 	 *
 	 * @param uint8_t[8][8] Row/Col data.
 	 */
@@ -212,14 +212,14 @@ class MAX72XXClass
 	void setLEDValue(uint8_t row, uint8_t col, bool value);
 
 	/**
-	 * Gets the currently-displayed data.
+	 * Gets the currently-displayed data as pointer to 8x8 byte array.
 	 *
-	 * @return pointer to uint8_t[8][8] [row][col]
+	 * @return pointer to uint8_t[8][8] (Row/Column)
 	 */
 	uint8_t* getMatrix();
 
 	/**
-	 * Gets current display status of a row.
+	 * Gets current display status of an LED row.
 	 *
 	 * @param row Requested row (0-7).
 	 *
@@ -228,7 +228,7 @@ class MAX72XXClass
 	uint8_t getRowValue(uint8_t row);
 
 	/**
-	 * Gets current display status of a column.
+	 * Gets current display status of an LED column.
 	 *
 	 * @param col Requested column (0-7)
 	 *
@@ -237,26 +237,23 @@ class MAX72XXClass
 	uint8_t getColumnValue(uint8_t col);
 
 	/**
-	 * Gets value of specific LED form Row/Column co-ordinates
+	 * Gets value of specific LED form Row/Column co-ordinates.
 	 *
 	 * @param row Row co-ordinate
 	 * @param col Column co-ordinate
 	 *
-	 * @return Status of LED
+	 * @return Status of requested LED.
 	 */
 	bool getLEDValue(uint8_t row, uint8_t col);
 
 	/**
 	 * Displays a character at selected digit position.
 	 *
-	 * @param digit		    Digit position (0-7)
-	 * @param character	    The characteCharacter to display (Refer to datasheet for valid characters)
+	 * @param digit		    Digit position (0-7).
+	 * @param character	    The characteCharacter to display (Refer to datasheet for valid characters).
 	 * @param decimal_point true to add decimal point to digit.
 	 */
 	void setCharacter(uint8_t digit, char character, bool decimal_point);
 };
-
-
-
 #endif
 

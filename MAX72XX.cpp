@@ -29,7 +29,7 @@ void MAX72XXClass::init()
 	Transmit(MAX72XX_REG_SHUTDOWN, ShutdownMode ? MAX72XX_SDMODE_SHUTDOWN : MAX72XX_SDMODE_NORMAL);
 
 	//set display test mode
-	Transmit(MAX72XX_REG_DISPLAYTEST, TestMode ? MAX72XX_TESTMODE_TEST : MAX72XX_TESTMODE_NORMAL);
+	Transmit(MAX72XX_REG_DISPLAYTEST, DisplayTestMode ? MAX72XX_TESTMODE_TEST : MAX72XX_TESTMODE_NORMAL);
 }
 
 void MAX72XXClass::Transmit(uint8_t address, uint8_t data)

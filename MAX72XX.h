@@ -45,7 +45,7 @@
 #define MAX72XX_TESTMODE_NORMAL	0x00
 #define MAX72XX_TESTMODE_TEST	0x01
 
-class MAX72XXClass
+class MAX72XX
 {
  private:
 	 //pin used for LOAD/CS
@@ -86,7 +86,7 @@ class MAX72XXClass
 	 * @param shutdown    true to set shutdown mode (Datasheet Table 3).
 	 * @param test_mode   true to enable test mode (Datasheet Table 10).
 	 */
-	MAX72XXClass
+	MAX72XX
 	(
 		int load_pin, 
 		uint32_t spi_clock = 10000000,

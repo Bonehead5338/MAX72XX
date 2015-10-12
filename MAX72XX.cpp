@@ -5,7 +5,7 @@
  */
 #include "MAX72XX.h"
 
-void MAX72XXClass::init()
+void MAX72XX::init()
 {
 	//setup pin
 	pinMode(LoadPin, OUTPUT);
@@ -32,7 +32,7 @@ void MAX72XXClass::init()
 	Transmit(MAX72XX_REG_DISPLAYTEST, DisplayTestMode ? MAX72XX_TESTMODE_TEST : MAX72XX_TESTMODE_NORMAL);
 }
 
-void MAX72XXClass::Transmit(uint8_t address, uint8_t data)
+void MAX72XX::Transmit(uint8_t address, uint8_t data)
 {
 	SPI.beginTransaction(SPISettings(SPIClock, MSBFIRST, SPI_MODE0));
 
@@ -48,7 +48,7 @@ void MAX72XXClass::Transmit(uint8_t address, uint8_t data)
 	SPI.endTransaction();
 }
 
-void MAX72XXClass::setMatrix(uint8_t* data)
+void MAX72XX::setMatrix(uint8_t* data)
 {
 	//send 8 bytes to digit registers
 	for (uint8_t reg = MAX72XX_REG_DIGIT0, i = 0; reg <= MAX72XX_REG_DIGIT7; reg++, i++)
@@ -57,7 +57,7 @@ void MAX72XXClass::setMatrix(uint8_t* data)
 	}
 }
 
-void MAX72XXClass::setRowValue(uint8_t row, uint8_t value)
+void MAX72XX::setRowValue(uint8_t row, uint8_t value)
 {
 	//test if valid row
 	if (row >= MATRIX_DIM)
@@ -70,7 +70,7 @@ void MAX72XXClass::setRowValue(uint8_t row, uint8_t value)
 	Transmit(DigitRegFromZeroIndex(row), MAXData[row]);
 }
 
-void MAX72XXClass::setColumnValue(uint8_t col, uint8_t value)
+void MAX72XX::setColumnValue(uint8_t col, uint8_t value)
 {
 	//test if valid row
 	if (col >= MATRIX_DIM)
@@ -96,7 +96,7 @@ void MAX72XXClass::setColumnValue(uint8_t col, uint8_t value)
 	setMatrix(MAXData);
 }
 
-void MAX72XXClass::setLEDValue(uint8_t row, uint8_t col, bool value)
+void MAX72XX::setLEDValue(uint8_t row, uint8_t col, bool value)
 {
 	//test if valid row and column
 	if (row >= MATRIX_DIM || col >= MATRIX_DIM)
@@ -118,7 +118,7 @@ void MAX72XXClass::setLEDValue(uint8_t row, uint8_t col, bool value)
 	Transmit(DigitRegFromZeroIndex(row), MAXData[row]);
 }
 
-uint8_t* MAX72XXClass::getMatrix()
+uint8_t* MAX72XX::getMatrix()
 {	
 	//copy current display data to read only area
 	for (uint8_t i = 0; i < MATRIX_DIM; i++)
@@ -130,7 +130,7 @@ uint8_t* MAX72XXClass::getMatrix()
 	return MAXData_ReadOnly;
 }
 
-uint8_t MAX72XXClass::getRowValue(uint8_t row)
+uint8_t MAX72XX::getRowValue(uint8_t row)
 {
 	//return zero for invalid row
 	if (row >= MATRIX_DIM)
@@ -142,7 +142,7 @@ uint8_t MAX72XXClass::getRowValue(uint8_t row)
 	}
 }
 
-uint8_t MAX72XXClass::getColumnValue(uint8_t col)
+uint8_t MAX72XX::getColumnValue(uint8_t col)
 {
 	//return zero for invalid column
 	if (col >= MATRIX_DIM)
@@ -167,7 +167,7 @@ uint8_t MAX72XXClass::getColumnValue(uint8_t col)
 	}	
 }
 
-bool MAX72XXClass::getLEDValue(uint8_t row, uint8_t col)
+bool MAX72XX::getLEDValue(uint8_t row, uint8_t col)
 {
 	//return false for invalid row or column
 	if (row >= MATRIX_DIM || col >= MATRIX_DIM)
@@ -179,7 +179,7 @@ bool MAX72XXClass::getLEDValue(uint8_t row, uint8_t col)
 	}
 }
 
-void MAX72XXClass::setCharacter(uint8_t digit, char character, bool decimal_point)
+void MAX72XX::setCharacter(uint8_t digit, char character, bool decimal_point)
 {
 	//check valid digit 
 	if (digit >= MATRIX_DIM) return;
@@ -190,7 +190,7 @@ void MAX72XXClass::setCharacter(uint8_t digit, char character, bool decimal_poin
 		//if valid character, send for display
 		if (character == FontChars[i])
 		{
-			//send to MAX72XX (or with 0xE0 to add decimal
+			//send to MAX72XX (or with 0xE0 to add decimal point)
 			Transmit(DigitRegFromZeroIndex(digit), decimal_point ? i |= MAX72XX_7SEG_DP : i);
 		}
 	}

@@ -53,7 +53,7 @@ void MAX72XX::setMatrix(uint8_t* data)
 	//send 8 bytes to digit registers
 	for (uint8_t reg = MAX72XX_REG_DIGIT0, i = 0; reg <= MAX72XX_REG_DIGIT7; reg++, i++)
 	{
-		Transmit(reg, *(data + i));
+		Transmit(reg, data[i]);
 	}
 }
 
